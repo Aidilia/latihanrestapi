@@ -47,3 +47,21 @@ exports.tambahdatamahasiswa = function(req, res){
         }
     });
 };
+
+//mengupdat data mahasiswa
+exports.updatedatamahasiswa = function(req, res){
+    var id_mhs = req.body.id_mhs;
+    var nim_mhs = req.body.nim_mhs;
+    var nama_mhs = req.body.nama_mhs;
+    var jurusan = req.body.jurusan;
+
+    connection.query('UPDATE mahasiswa SET nim_mhs=?, nama_mhs=?, jurusan=? WHERE id_mhs=?', 
+    [nim_mhs,nama_mhs,jurusan,id_mhs], 
+    function(error, rows, fields){
+        if(error){
+            console.log(error)
+        }else{
+            response.ok("Berhasil Update Data", res);
+        }
+    })
+}
