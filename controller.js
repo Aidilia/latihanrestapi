@@ -63,5 +63,19 @@ exports.updatedatamahasiswa = function(req, res){
         }else{
             response.ok("Berhasil Update Data", res);
         }
-    })
-}
+    });
+};
+
+//menghapus data mahasiswa
+exports.deletedatamasahsiswa = function(req,res){
+    var id_mhs = req.body.id_mhs;
+    connection.query('DELETE FROM mahasiswa WHERE id_mhs=?',
+    [id_mhs], 
+    function(error, rows, fields){
+        if (error) {
+            console.log(error)
+        } else {
+            response.ok("Berhasil menghapus data", res);
+        }
+    });
+};
