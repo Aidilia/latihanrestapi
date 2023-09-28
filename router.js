@@ -9,4 +9,7 @@ module.exports = function(app){
     app.route('/tampil')
         .get(jsonku.tampildatabasemahasiswa);
 
+    app.route('/tampil/:id')
+        .get(jsonku.tampilberdasarID);
+
 }
