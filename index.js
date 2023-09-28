@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
 
 var morgan = require('morgan');
+const app = express();
 
 const port = 3000
 
