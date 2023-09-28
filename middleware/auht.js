@@ -1,23 +1,24 @@
-var connection = require('../koneksi');
+var connection = require('../koneksi.js');
 var mysql = require('mysql');
-var md5 = require('MD5');
-var response = require('../res');
+var md5 = require('md5');
+var response = require('../res.js');
 var jwt = require('jsonwebtoken');
-var config = require('../config/secret');
+var config = require('../config/secret.js');
 var ip = require('ip');
 
 //controller untuk register
+
 exports.registrasi = function(req,res){
     var post = {
-        username: req.body.username,
-        email: req.body.email,
-        password: md5(req.body.password),
-        role: req.body.role,
-        tanggal_daftar: new Date()
+                username: req.body.username,
+                email: req.body.email,
+                password: md5(req.body.password),
+                role: req.body.role,
+                tanggal_daftar: new Date()
     }
 
-    var query = "SELECT email from ?? WHERE ??";
-    var table = ["user", "name", post.email];
+    var query = "SELECT email FROM ?? WHERE ??";
+    var table = ["user", "email", post.email];
 
     query = mysql.format(query, table);
 
@@ -30,15 +31,16 @@ exports.registrasi = function(req,res){
                 var table = ["user"];
 
                 query = mysql.format(query, table);
+
                 connection.query(query, post, function(error, rows){
                     if(error){
-                        console.log(error)
+                        console.log(error);
                     }else{
                         response.ok("Berhasil menambahkan user", res);
                     }
-                });
+                });  
             }else{
-                response.ok("Email sudah terdaftar!");
+                response.ok("Email sudah terdaftar!", res);
             }
         }
     })
