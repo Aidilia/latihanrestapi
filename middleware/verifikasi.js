@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/secret');
 
 function verifikasi(){
-    return function(req, res, next){
+    return function(req, rest, next){
         var role = req.body.role;
         
         //cek token diheader
