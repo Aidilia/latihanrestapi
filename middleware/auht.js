@@ -76,7 +76,7 @@ exports.login = function(req,res){
                 }
 
                 var query = "INSERT INTO ?? SET ?";
-                var table = ['akes_token'];
+                var table = ["akes_token"];
 
                 query = mysql.format(query, table);
                 connection.query(query, data, function(error, rows){
@@ -85,15 +85,19 @@ exports.login = function(req,res){
                     }else{
                          res.json({
                             success: true,
-                            message: "Token JWT tergenerate",
+                            message: 'Token JWT tergenerate',
                             token: token,
                             currUser: data.id_user
                          });
                     }
                 });
             }else{
-                res.json({"error": true, "message": "email atau passwor dsalah"})
+                res.json({"error": true, "message": "email atau password salah"})
             }
         }
     });
+}
+
+exports.halamanrahasia = function(req,res){
+    response.ok("Halaman inni hanya untuk user dengan role =2!", res);
 }
